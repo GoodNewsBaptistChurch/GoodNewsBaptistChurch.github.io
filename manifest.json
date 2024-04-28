@@ -1,0 +1,7 @@
+{
+    "name": "Soul Stirring Songs and Hymns",
+    "short_name": "Digital Hymn Book",
+    "start_url": "/index.html",
+    "display": "standalone",
+    "orientation": "portrait"
+}
