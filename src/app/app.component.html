@@ -9,26 +9,28 @@
     <div class="container px-0" style="margin-top: 80px;">
         <div *ngIf="currentHymn" class="text-center">
             <h2>{{ currentHymn.Title }}</h2>
-            
-            <p style="white-space: pre-line;">{{ currentHymn.Verses[0] }}</p>
-            
-            <ng-container *ngIf="currentHymn.Chorus; else remainingVerses">
-              <p style="white-space: pre-line;"><i>Chorus<br>{{ currentHymn.Chorus }}</i></p>
-            </ng-container>
-            
-            <ng-container *ngTemplateOutlet="remainingVerses"></ng-container>
-          </div>
           
-          <ng-template #remainingVerses>
-            <ng-container *ngFor="let verse of currentHymn.Verses.slice(1)">
-              <p style="white-space: pre-line;">{{ verse }}</p>
-            </ng-container>
-          </ng-template>
+            <!-- Display Verse 1 -->
+            <p style="white-space: pre-line;">
+              Verse 1:<br>{{ currentHymn.Verses[0] }}
+            </p>
           
-                
-                  
+            <!-- Display Chorus if it exists -->
+            <ng-container *ngIf="currentHymn.Chorus">
+              <p style="white-space: pre-line;">
+                Chorus:<br><i>{{ currentHymn.Chorus }}</i>
+              </p>
+            </ng-container>
+          
+            <!-- Display remaining verses -->
+            <ng-container *ngFor="let verse of currentHymn.Verses.slice(1); let i = index">
+              <p style="white-space: pre-line;">
+                Verse {{ i + 2 }}:<br>{{ verse }}
+              </p>
+            </ng-container>
+        </div>
     </div>
-    <div style="padding: 5px; position: fixed; bottom: 0; left: 50%; transform: translateX(-50%); width: 100%; max-width: 750px;">
+    <div style="display: none; padding: 5px; position: fixed; bottom: 0; left: 50%; transform: translateX(-50%); width: 100%; max-width: 750px;">
         <button style="width: 60px; height: 60px;" class="btn btn-dark btn-lg"><i class="fa fa-book" style="color: white;"></i></button>
     </div>
 </div>
