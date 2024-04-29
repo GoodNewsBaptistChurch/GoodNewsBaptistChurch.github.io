@@ -10,15 +10,12 @@
         <div *ngIf="currentHymn" class="text-center">
             <h2>{{ currentHymn.Title }}</h2>
             
-            <!-- Display the first verse -->
             <p style="white-space: pre-line;">{{ currentHymn.Verses[0] }}</p>
             
-            <!-- Display the chorus if it exists -->
             <ng-container *ngIf="currentHymn.Chorus; else remainingVerses">
-              <p style="white-space: pre-line;"><i>{{ currentHymn.Chorus }}</i></p>
+              <p style="white-space: pre-line;"><i>Chorus<br>{{ currentHymn.Chorus }}</i></p>
             </ng-container>
             
-            <!-- Display the remaining verses -->
             <ng-container *ngTemplateOutlet="remainingVerses"></ng-container>
           </div>
           
