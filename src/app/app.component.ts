@@ -1,4 +1,4 @@
-import { Component, NgModule, OnInit, ViewChild, ElementRef } from '@angular/core';
+import { Component, NgModule, OnInit, ViewChild, ElementRef, HostListener } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { HttpClientModule } from '@angular/common/http';
 import { FormsModule } from '@angular/forms';
@@ -12,7 +12,6 @@ import { ActivatedRoute } from '@angular/router';
   styleUrls: ['./app.component.css'],
   imports: [HttpClientModule, FormsModule, CommonModule]
 })
-
 export class AppComponent implements OnInit {
   hymns: any[] = [];
   currentHymnIndex: number = 0;
@@ -84,5 +83,23 @@ export class AppComponent implements OnInit {
 
   saveCurrentHymnIndex() {
     localStorage.setItem('currentHymnIndex', this.currentHymnIndex.toString());
+  }
+  swipeRight() {
+    // Implement swipe right behavior here
+    this.incrementHymn();
+  }
+  swipeLeft() {
+    // Implement swipe right behavior here
+    this.decrementHymn();
+  }
+
+  @HostListener('swipe', ['$event'])
+  onSwipe(event: any) {
+    const swipeDirection = event.direction;
+    if (swipeDirection === 2) {
+      this.incrementHymn();
+    } else if (swipeDirection === 4) {
+      this.decrementHymn();
+    }
   }
 }
