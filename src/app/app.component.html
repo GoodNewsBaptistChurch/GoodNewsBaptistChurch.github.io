@@ -9,11 +9,27 @@
     <div class="container px-0" style="margin-top: 80px;">
         <div *ngIf="currentHymn" class="text-center">
             <h2>{{ currentHymn.Title }}</h2>
-            <p *ngFor="let verse of currentHymn.Verses" style="white-space: pre-line;">
-              {{ verse }}
-            </p>
-            <p *ngIf="currentHymn.Chorus" style="white-space: pre-line;"><i>{{ currentHymn.Chorus }}</i></p>
-          </div>          
+            
+            <!-- Display the first verse -->
+            <p style="white-space: pre-line;">{{ currentHymn.Verses[0] }}</p>
+            
+            <!-- Display the chorus if it exists -->
+            <ng-container *ngIf="currentHymn.Chorus; else remainingVerses">
+              <p style="white-space: pre-line;"><i>{{ currentHymn.Chorus }}</i></p>
+            </ng-container>
+            
+            <!-- Display the remaining verses -->
+            <ng-container *ngTemplateOutlet="remainingVerses"></ng-container>
+          </div>
+          
+          <ng-template #remainingVerses>
+            <ng-container *ngFor="let verse of currentHymn.Verses.slice(1)">
+              <p style="white-space: pre-line;">{{ verse }}</p>
+            </ng-container>
+          </ng-template>
+          
+                
+                  
     </div>
     <div style="padding: 5px; position: fixed; bottom: 0; left: 50%; transform: translateX(-50%); width: 100%; max-width: 750px;">
         <button style="width: 60px; height: 60px;" class="btn btn-dark btn-lg"><i class="fa fa-book" style="color: white;"></i></button>
