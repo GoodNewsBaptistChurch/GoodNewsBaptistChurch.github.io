@@ -27,15 +27,14 @@ export class AppComponent implements OnInit {
       this.currentHymnIndex = +savedHymnIndex;
     }
 
-    // Make an HTTP GET request to fetch the hymns.json file
     this.http.get<any[]>('assets/hymns.json').subscribe(
       (data) => {
-        this.hymns = data; // Assign the fetched data to the hymns variable
+        this.hymns = data;
         this.loadCurrentHymn();
-        console.log('Hymns:', this.hymns); // Log the fetched hymns to the console
+        console.log('Hymns: ', this.hymns);
       },
       (error) => {
-        console.error('Error fetching hymns:', error); // Log any errors
+        console.error('Error: ', error);
       }
     );
   }
@@ -52,7 +51,7 @@ export class AppComponent implements OnInit {
       this.currentHymnIndex++;
       this.loadCurrentHymn();
       this.saveCurrentHymnIndex();
-      this.hymnNumberInput.nativeElement.blur(); // Unfocus the input field
+      this.hymnNumberInput.nativeElement.blur();
     }
   }
   
@@ -61,7 +60,7 @@ export class AppComponent implements OnInit {
       this.currentHymnIndex--;
       this.loadCurrentHymn();
       this.saveCurrentHymnIndex();
-      this.hymnNumberInput.nativeElement.blur(); // Unfocus the input field
+      this.hymnNumberInput.nativeElement.blur();
     }
   }
 
@@ -71,35 +70,16 @@ export class AppComponent implements OnInit {
       this.currentHymnIndex = index;
       this.loadCurrentHymn();
       this.saveCurrentHymnIndex();
-      this.searchValue = ''; // Clear the search input after searching
-      this.hymnNumberInput.nativeElement.blur(); // Unfocus the input field
+      this.searchValue = '';
+      this.hymnNumberInput.nativeElement.blur();
     }
   }
 
   updateSearchPlaceholder() {
-    // Update the placeholder attribute without changing searchValue
     this.hymnNumberInput.nativeElement.placeholder = (this.currentHymnIndex + 1).toString();
   }
 
   saveCurrentHymnIndex() {
     localStorage.setItem('currentHymnIndex', this.currentHymnIndex.toString());
-  }
-  swipeRight() {
-    // Implement swipe right behavior here
-    this.incrementHymn();
-  }
-  swipeLeft() {
-    // Implement swipe right behavior here
-    this.decrementHymn();
-  }
-
-  @HostListener('swipe', ['$event'])
-  onSwipe(event: any) {
-    const swipeDirection = event.direction;
-    if (swipeDirection === 2) {
-      this.incrementHymn();
-    } else if (swipeDirection === 4) {
-      this.decrementHymn();
-    }
   }
 }
