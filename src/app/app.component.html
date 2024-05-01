@@ -6,6 +6,8 @@
             <input #hymnNumberInput [(ngModel)]="searchValue" (keydown.enter)="searchHymn()" style="height: 60px; flex: 1; font-size: 40px;" type="number" class="form-control text-center" [placeholder]="currentHymnIndex + 1">
             <div style="padding-right: 10px;"></div>
             <button (click)="incrementHymn()" style="width: 60px; height: 60px;" class="btn btn-light btn-lg"><i class="fa fa-chevron-right" style="color: black;"></i></button>
+            <div style="padding-right: 10px;"></div>
+            <button (click)="incrementHymn()" style="width: 60px; height: 60px;" class="btn btn-light btn-lg"><i class="fa fa-list" style="color: black;"></i></button>
         </div>
     </div>
     <div class="container px-0" style="margin-top: 90px; margin-bottom: 90px;">
@@ -14,20 +16,20 @@
           
             <!-- Display Verse 1 -->
             <p style="white-space: pre-line;">
-              Verse 1:<br>{{ currentHymn.Verses[0] }}
+              {{ currentHymn.Verses[0] }}
             </p>
           
             <!-- Display Chorus if it exists -->
             <ng-container *ngIf="currentHymn.Chorus">
               <p style="white-space: pre-line;">
-                Chorus:<br><i>{{ currentHymn.Chorus }}</i>
+                Chorus:<br>{{ currentHymn.Chorus }}
               </p>
             </ng-container>
           
             <!-- Display remaining verses -->
             <ng-container *ngFor="let verse of currentHymn.Verses.slice(1); let i = index">
               <p style="white-space: pre-line;">
-                Verse {{ i + 2 }}:<br>{{ verse }}
+                {{ verse }}
               </p>
             </ng-container>
         </div>
