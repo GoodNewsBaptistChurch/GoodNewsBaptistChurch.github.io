@@ -1,9 +1,10 @@
-import { Component, NgModule, OnInit, ViewChild, ElementRef, HostListener } from '@angular/core';
+import { Component, NgModule, OnInit, ViewChild, ElementRef, Renderer2 } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { HttpClientModule } from '@angular/common/http';
 import { FormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
 import { ActivatedRoute } from '@angular/router';
+import * as bootstrap from 'bootstrap';
 
 @Component({
   selector: 'app-root',
@@ -18,8 +19,9 @@ export class AppComponent implements OnInit {
   currentHymn: any;
   searchValue: string = '';
   @ViewChild('hymnNumberInput', { static: true }) hymnNumberInput!: ElementRef;
+  @ViewChild('fullscreenModal') fullscreenModal!: ElementRef;
 
-  constructor(private route: ActivatedRoute, private http: HttpClient) {}
+  constructor(private route: ActivatedRoute, private http: HttpClient, private renderer: Renderer2) {}
 
   ngOnInit() {
     const savedHymnIndex = localStorage.getItem('currentHymnIndex');
@@ -82,4 +84,6 @@ export class AppComponent implements OnInit {
   saveCurrentHymnIndex() {
     localStorage.setItem('currentHymnIndex', this.currentHymnIndex.toString());
   }
+
+
 }
