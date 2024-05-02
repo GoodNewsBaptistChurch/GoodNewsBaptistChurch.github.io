@@ -105,14 +105,18 @@ export class AppComponent implements OnInit {
     localStorage.setItem('currentHymnIndex', this.currentHymnIndex.toString());
   }
 
-  incrementTextSize() {
-    this.adjustTextSize(2); // Increment by 2px
+  fontSize: number = 16;
+
+  increaseFontSize() {
+    this.fontSize += 2; // Increase font size by 2px
   }
 
-  // Function to decrement the text size
-  decrementTextSize() {
-    this.adjustTextSize(-2); // Decrement by 2px
+  decreaseFontSize() {
+    if (this.fontSize > 8) {
+      this.fontSize -= 2; // Decrease font size by 2px, ensure it doesn't go below 8px
+    }
   }
+
 
 
 
