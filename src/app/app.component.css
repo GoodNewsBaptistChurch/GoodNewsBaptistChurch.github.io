@@ -1,18 +1,7 @@
-button:focus,
-button:active {
-    outline: none;
-    border: none;
-}
-
 button {
     transition: background-color 0.3s ease;
 }
 
 button:hover {
     background-color: lightgrey;
-}
-
-button {
-    outline: none;
-    border: none;
 }

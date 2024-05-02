@@ -11,21 +11,21 @@
         </div>
     </div>
     <div class="container px-0" style="margin-top: 90px; margin-bottom: 90px;">
-        <div *ngIf="currentHymn" class="text-center">
-            <h2>{{ currentHymn.Title }}</h2>
+        <div *ngIf="currentHymn" class="text-center" #hymnContainer>
+            <h2 #titleRef>{{ currentHymn.Title }}</h2>
           
-            <p style="white-space: pre-line;">
+            <p #verse1Ref style="white-space: pre-line;">
               {{ currentHymn.Verses[0] }}
             </p>
           
             <ng-container *ngIf="currentHymn.Chorus">
-              <p style="white-space: pre-line;">
+              <p #chorusRef style="white-space: pre-line;">
                 Chorus:<br>{{ currentHymn.Chorus }}
               </p>
             </ng-container>
           
             <ng-container *ngFor="let verse of currentHymn.Verses.slice(1); let i = index">
-              <p style="white-space: pre-line;">
+              <p #verseRef{{i+1}} style="white-space: pre-line;">
                 {{ verse }}
               </p>
             </ng-container>
@@ -36,15 +36,14 @@
         <button onclick="this.blur();" style="width: 60px; height: 60px;" class="btn btn-light btn-lg"><i class="fa fa-book" style="color: black;"></i></button>
         <div style="padding-right: 10px; flex: 1;"></div>
         <button onclick="this.blur();" style="width: 60px; height: 60px;" class="btn btn-light btn-lg"><i class="fa fa-play" style="color: green;"></i></button>
-        <div style="padding-right: 10px; flex: 1;"></div>
+        <div style="padding-right: 10px;"></div>
         <button onclick="this.blur();" style="width: 60px; height: 60px;" class="btn btn-light btn-lg"><i class="fa fa-stop" style="color: red;"></i></button>
         <div style="padding-right: 10px; flex: 1;"></div>
-        <button onclick="this.blur();" style="width: 60px; height: 60px;" class="btn btn-light btn-lg"><i class="fa fa-minus" style="color: black;"></i></button>
-        <div style="padding-right: 10px; flex: 1;"></div>
-        <button onclick="this.blur();" style="width: 60px; height: 60px;" class="btn btn-light btn-lg"><i class="fa fa-plus" style="color: black;"></i></button>
+        <button onclick="this.blur();" (click)="adjustTextSize(-10)" style="width: 60px; height: 60px;" class="btn btn-light btn-lg"><i class="fa fa-minus" style="color: black;"></i></button>
+        <div style="padding-right: 10px;"></div>
+        <button onclick="this.blur();" (click)="adjustTextSize(10)" style="width: 60px; height: 60px;" class="btn btn-light btn-lg"><i class="fa fa-plus" style="color: black;"></i></button>
       </div>
     </div>
-
 
 
     <div class="modal top " id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true" data-mdb-backdrop="true" data-mdb-keyboard="true">

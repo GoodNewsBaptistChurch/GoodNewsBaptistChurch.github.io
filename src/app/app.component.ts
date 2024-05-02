@@ -1,4 +1,4 @@
-import { Component, NgModule, OnInit, ViewChild, ElementRef, Renderer2 } from '@angular/core';
+import { Component, NgModule, OnInit, ViewChild, ElementRef, Renderer2, ViewChildren, QueryList } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { HttpClientModule } from '@angular/common/http';
 import { FormsModule } from '@angular/forms';
@@ -13,17 +13,25 @@ import * as bootstrap from 'bootstrap';
   styleUrls: ['./app.component.css'],
   imports: [HttpClientModule, FormsModule, CommonModule]
 })
+
 export class AppComponent implements OnInit {
   hymns: any[] = [];
   currentHymnIndex: number = 0;
   currentHymn: any;
   searchValue: string = '';
   @ViewChild('hymnNumberInput', { static: true }) hymnNumberInput!: ElementRef;
-  @ViewChild('fullscreenModal') fullscreenModal!: ElementRef;
+  @ViewChild('verse1Ref') verse1Ref!: ElementRef;
+  @ViewChild('chorusRef') chorusRef!: ElementRef;
+  @ViewChild('titleRef') titleRef!: ElementRef;
+  @ViewChildren('verseRef') verseRef!: QueryList<ElementRef>;
+  
+
+  
 
   constructor(private route: ActivatedRoute, private http: HttpClient, private renderer: Renderer2) {}
 
   ngOnInit() {
+    
     const savedHymnIndex = localStorage.getItem('currentHymnIndex');
     if (savedHymnIndex !== null) {
       this.currentHymnIndex = +savedHymnIndex;
@@ -84,6 +92,27 @@ export class AppComponent implements OnInit {
   saveCurrentHymnIndex() {
     localStorage.setItem('currentHymnIndex', this.currentHymnIndex.toString());
   }
+
+  incrementTextSize() {
+    this.adjustTextSize(2); // Increment by 2px
+  }
+
+  // Function to decrement the text size
+  decrementTextSize() {
+    this.adjustTextSize(-2); // Decrement by 2px
+  }
+
+
+
+  adjustTextSize(change: number) {
+    this.verseRef.forEach(verseRef => {
+        const currentSize = parseInt(window.getComputedStyle(verseRef.nativeElement).fontSize, 10);
+        const newSize = currentSize + change;
+        this.renderer.setStyle(verseRef.nativeElement, 'font-size', newSize + 'px');
+    });
+}
+  
+  
 
 
 }
