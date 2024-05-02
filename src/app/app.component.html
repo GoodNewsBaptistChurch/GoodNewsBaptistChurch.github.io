@@ -45,19 +45,36 @@
       </div>
     </div>
 
-      <div class="modal top" style="max-width: 750px; position: fixed; top: 50%; left: 50%; transform: translate(-50%, -50%);" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true" data-mdb-backdrop="true" data-mdb-keyboard="true">
-        <div class="modal-dialog modal-fullscreen " style="max-width: 750px;">
-          <div class="modal-content">
-            <div class="modal-header">
-              <h5 class="modal-title" id="exampleModalLabel">Index</h5>
-              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-            </div>
-            <div class="modal-body">...</div>
-            <div class="modal-footer">
-              <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-            </div>
+    <div class="modal top" style="max-width: 750px; position: fixed; top: 50%; left: 50%; transform: translate(-50%, -50%);" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true" data-mdb-backdrop="true" data-mdb-keyboard="true">
+      <div class="modal-dialog modal-fullscreen" style="max-width: 750px;">
+        <div class="modal-content" style="display: flex; flex-direction: column; height: 100%;">
+          <div class="modal-header">
+            <h5 class="modal-title" id="exampleModalLabel">Index</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+          </div>
+          <div class="modal-body" style="overflow-y: auto;">
+            <table class="table table-striped">
+              <thead>
+                <tr>
+                  <th (click)="sortByNumber()">Number</th>
+                  <th (click)="sortByTitle()">Title</th>
+                  <!-- Add more headers as needed -->
+                </tr>
+              </thead>
+              <tbody>
+                <tr *ngFor="let hymn of hymns">
+                  <td>{{ hymn.Number }}</td>
+                  <td>{{ hymn.Title }}</td>
+                  <!-- Add more cells as needed -->
+                </tr>
+              </tbody>
+            </table>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
           </div>
         </div>
       </div>
-
+    </div>
+    
 </div>

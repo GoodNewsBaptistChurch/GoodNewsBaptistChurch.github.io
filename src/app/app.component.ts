@@ -14,6 +14,7 @@ import * as bootstrap from 'bootstrap';
   imports: [HttpClientModule, FormsModule, CommonModule]
 })
 
+
 export class AppComponent implements OnInit {
   hymns: any[] = [];
   currentHymnIndex: number = 0;
@@ -25,6 +26,7 @@ export class AppComponent implements OnInit {
   @ViewChild('titleRef') titleRef!: ElementRef;
   @ViewChildren('verseRef') verseRef!: QueryList<ElementRef>;
   
+
 
   
 
@@ -84,6 +86,16 @@ export class AppComponent implements OnInit {
       this.hymnNumberInput.nativeElement.blur();
     }
   }
+
+  sortByNumber() {
+    this.hymns.sort((a, b) => a.Number - b.Number);
+  }
+  
+  sortByTitle() {
+    this.hymns.sort((a, b) => a.Title.localeCompare(b.Title));
+  }
+  
+
 
   updateSearchPlaceholder() {
     this.hymnNumberInput.nativeElement.placeholder = (this.currentHymnIndex + 1).toString();
