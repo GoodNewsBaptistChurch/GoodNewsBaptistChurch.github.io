@@ -5,3 +5,9 @@ button {
 button:hover {
     background-color: lightgrey;
 }
+tr {
+    cursor: pointer;
+  }
+tr:hover {
+    background-color: #ccc;
+  }

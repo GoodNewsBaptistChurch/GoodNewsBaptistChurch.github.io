@@ -4,7 +4,6 @@ import { HttpClientModule } from '@angular/common/http';
 import { FormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
 import { ActivatedRoute } from '@angular/router';
-import * as bootstrap from 'bootstrap';
 
 @Component({
   selector: 'app-root',
@@ -93,6 +92,12 @@ export class AppComponent implements OnInit {
   
   sortByTitle() {
     this.hymns.sort((a, b) => a.Title.localeCompare(b.Title));
+  }
+
+  selectHymn(hymn: any) {
+    this.currentHymnIndex = this.hymns.indexOf(hymn);
+    this.loadCurrentHymn();
+    this.saveCurrentHymnIndex();
   }
   
 

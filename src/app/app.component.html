@@ -58,14 +58,12 @@
                 <tr>
                   <th (click)="sortByNumber()">Number</th>
                   <th (click)="sortByTitle()">Title</th>
-                  <!-- Add more headers as needed -->
                 </tr>
               </thead>
               <tbody>
-                <tr *ngFor="let hymn of hymns">
+                <tr *ngFor="let hymn of hymns" (click)="selectHymn(hymn)" data-bs-dismiss="modal">
                   <td>{{ hymn.Number }}</td>
                   <td>{{ hymn.Title }}</td>
-                  <!-- Add more cells as needed -->
                 </tr>
               </tbody>
             </table>
