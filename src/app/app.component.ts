@@ -24,10 +24,12 @@ export class AppComponent implements OnInit {
   @ViewChild('chorusRef') chorusRef!: ElementRef;
   @ViewChild('titleRef') titleRef!: ElementRef;
   @ViewChildren('verseRef') verseRef!: QueryList<ElementRef>;
-  
 
 
-  
+  container: HTMLElement | null = null;
+  zoomableImage: HTMLImageElement | null = null;
+  currentScale: number = 1;
+
 
   constructor(private route: ActivatedRoute, private http: HttpClient, private renderer: Renderer2) {}
 
@@ -135,46 +137,10 @@ export class AppComponent implements OnInit {
         this.renderer.setStyle(verseRef.nativeElement, 'font-size', newSize + 'px');
     });
 
-    const container: HTMLElement | null = document.querySelector('.pinch-zoom');
-    const zoomableImage: HTMLImageElement | null = document.getElementById('zoomable-image') as HTMLImageElement;
-    let currentScale: number = 1;
-    
-    // Function to handle zooming
-    function handleZoom(event: WheelEvent) {
-      event.preventDefault();
-      const scaleFactor: number = 0.1; // Adjust zoom speed as needed
-    
-      // Calculate zoom direction based on mouse wheel direction
-      const delta: number = event.deltaY || (event as any).detail || -(event as any).wheelDelta;
-      const zoomDirection: number = delta > 0 ? 1 : -1;
-    
-      // Calculate new scale based on zoom direction
-      const newScale: number = currentScale + zoomDirection * scaleFactor;
-      
-      // Apply new scale to the image
-      if (zoomableImage) {
-        zoomableImage.style.transform = `scale(${newScale})`;
-      }
-    
-      // Update current scale
-      currentScale = newScale;
-    }
-    
-    // Add event listeners for both touch and mouse events
-    if (container) {
-      container.addEventListener('touchstart', (event: TouchEvent) => {
-        // Your touch event handling code
-      });
-    
-      container.addEventListener('wheel', handleZoom);
-    }
-    
+
 
 
 
 }
-  
-  
-
 
 }
