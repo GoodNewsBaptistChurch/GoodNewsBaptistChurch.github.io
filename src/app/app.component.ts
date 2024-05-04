@@ -134,6 +134,44 @@ export class AppComponent implements OnInit {
         const newSize = currentSize + change;
         this.renderer.setStyle(verseRef.nativeElement, 'font-size', newSize + 'px');
     });
+
+    const container: HTMLElement | null = document.querySelector('.pinch-zoom');
+    const zoomableImage: HTMLImageElement | null = document.getElementById('zoomable-image') as HTMLImageElement;
+    let currentScale: number = 1;
+    
+    // Function to handle zooming
+    function handleZoom(event: WheelEvent) {
+      event.preventDefault();
+      const scaleFactor: number = 0.1; // Adjust zoom speed as needed
+    
+      // Calculate zoom direction based on mouse wheel direction
+      const delta: number = event.deltaY || (event as any).detail || -(event as any).wheelDelta;
+      const zoomDirection: number = delta > 0 ? 1 : -1;
+    
+      // Calculate new scale based on zoom direction
+      const newScale: number = currentScale + zoomDirection * scaleFactor;
+      
+      // Apply new scale to the image
+      if (zoomableImage) {
+        zoomableImage.style.transform = `scale(${newScale})`;
+      }
+    
+      // Update current scale
+      currentScale = newScale;
+    }
+    
+    // Add event listeners for both touch and mouse events
+    if (container) {
+      container.addEventListener('touchstart', (event: TouchEvent) => {
+        // Your touch event handling code
+      });
+    
+      container.addEventListener('wheel', handleZoom);
+    }
+    
+
+
+
 }
   
   

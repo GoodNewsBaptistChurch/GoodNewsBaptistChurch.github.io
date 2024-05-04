@@ -84,37 +84,8 @@
           </div>
           <div class="modal-body" style="overflow:hidden; position:relative;">
             <div class="pinch-zoom px-0">
-              <img src="/assets/MusicSheets/{{currentHymn.Number}}/1.jpg" mwidth="100%" height="100%"/>
+              <img id="zoomable-image" src="/assets/MusicSheets/{{currentHymn.Number}}/1.jpg" mwidth="100%" height="100%"/>
             </div>
-
-            <script>
-              const container = document.querySelector('.pinch-zoom');
-              let initialDistance = 0;
-              let currentScale = 1;
-
-              container.addEventListener('touchstart', (event) => {
-                  if (event.touches.length === 2) {
-                      const touch1 = event.touches[0];
-                      const touch2 = event.touches[1];
-                      initialDistance = Math.hypot(touch1.clientX - touch2.clientX, touch1.clientY - touch2.clientY);
-                  }
-              });
-
-              container.addEventListener('touchmove', (event) => {
-                  if (event.touches.length === 2) {
-                      const touch1 = event.touches[0];
-                      const touch2 = event.touches[1];
-                      const currentDistance = Math.hypot(touch1.clientX - touch2.clientX, touch1.clientY - touch2.clientY);
-                      const scaleFactor = currentDistance / initialDistance;
-                      container.style.transform = `scale(${currentScale * scaleFactor})`;
-                  }
-              });
-
-              container.addEventListener('touchend', () => {
-                  currentScale *= scaleFactor;
-              });
-            </script>
-
           </div>
           <div class="modal-footer">
             <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
