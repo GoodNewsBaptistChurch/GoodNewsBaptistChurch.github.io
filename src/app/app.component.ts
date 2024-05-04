@@ -4,6 +4,8 @@ import { HttpClientModule } from '@angular/common/http';
 import { FormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
 import { ActivatedRoute } from '@angular/router';
+import {PinchZoomComponent, PinchZoomModule} from 'ngx-pinch-zoom';
+import { BrowserModule } from '@angular/platform-browser';
 
 @Component({
   selector: 'app-root',
@@ -12,8 +14,6 @@ import { ActivatedRoute } from '@angular/router';
   styleUrls: ['./app.component.css'],
   imports: [HttpClientModule, FormsModule, CommonModule]
 })
-
-
 export class AppComponent implements OnInit {
   hymns: any[] = [];
   currentHymnIndex: number = 0;
@@ -32,6 +32,9 @@ export class AppComponent implements OnInit {
   constructor(private route: ActivatedRoute, private http: HttpClient, private renderer: Renderer2) {}
 
   ngOnInit() {
+
+
+
     
     const savedHymnIndex = localStorage.getItem('currentHymnIndex');
     if (savedHymnIndex !== null) {
