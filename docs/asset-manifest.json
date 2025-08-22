@@ -1,7 +1,7 @@
 {
   "files": {
     "main.css": "/static/css/main.349aa5b3.css",
-    "main.js": "/static/js/main.b379e96d.js",
+    "main.js": "/static/js/main.e8128d6c.js",
     "static/js/453.670e15c7.chunk.js": "/static/js/453.670e15c7.chunk.js",
     "static/media/Rittenhouse.png": "/static/media/Rittenhouse.14405ce9f8956c9a9621.png",
     "static/media/Morales.png": "/static/media/Morales.54afe4d53ee5db31102c.png",
@@ -28,11 +28,11 @@
     "static/media/logo.png": "/static/media/logo.2113180d3d02c6000088.png",
     "index.html": "/index.html",
     "main.349aa5b3.css.map": "/static/css/main.349aa5b3.css.map",
-    "main.b379e96d.js.map": "/static/js/main.b379e96d.js.map",
+    "main.e8128d6c.js.map": "/static/js/main.e8128d6c.js.map",
     "453.670e15c7.chunk.js.map": "/static/js/453.670e15c7.chunk.js.map"
   },
   "entrypoints": [
     "static/css/main.349aa5b3.css",
-    "static/js/main.b379e96d.js"
+    "static/js/main.e8128d6c.js"
   ]
 }
